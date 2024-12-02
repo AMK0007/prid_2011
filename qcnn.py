@@ -1,4 +1,3 @@
-import torch
 import torchreid
 import numpy as np
 from qiskit.circuit.library import ZZFeatureMap
@@ -89,7 +88,7 @@ def preprocess_batch(batch):
 if __name__ == '__main__':
     # Create the VideoDataManager for PRID2011 dataset
     datamanager = torchreid.data.VideoDataManager(
-        root='C:/Users/21k-4502/Desktop/prid_2011',
+        root='C:/Users/ahmed/OneDrive/Desktop/prid_2011',
         sources='prid2011',
         height=256,
         width=128,
