@@ -1,10 +1,12 @@
+import torch
 import torchreid
 import numpy as np
 from qiskit.circuit.library import ZZFeatureMap
 from qiskit import transpile
-from qiskit.circuit import ParameterVector
+from qiskit.circuit import QuantumCircuit, QuantumRegister
 from qiskit_aer import Aer
 from qiskit.circuit.library import RealAmplitudes
+from qiskit.quantum_info import Statevector
 
 def quantum_convolution(circuits, feature_vectors, num_qubits=3, reps=1):
     """
@@ -13,8 +15,7 @@ def quantum_convolution(circuits, feature_vectors, num_qubits=3, reps=1):
     backend = Aer.get_backend('qasm_simulator')  # Transpile target backend
     
     # The total number of parameters in RealAmplitudes for a given number of qubits and repetitions
-    num_parameters = num_qubits * reps  # Example, this can vary based on your choice of quantum layers
-
+    num_parameters = num_qubits * (reps+1)  # Example, this can vary based on your choice of quantum layers
     # Ensure feature vectors are of appropriate size to map to quantum parameters
     # Reduce or pad the feature vector size to match num_parameters
     feature_vectors = feature_vectors[:, :num_parameters]  # Slice feature vectors to match number of parameters
@@ -24,13 +25,19 @@ def quantum_convolution(circuits, feature_vectors, num_qubits=3, reps=1):
 
     transpiled_circuits = []
     for i, circuit in enumerate(circuits):
+        input_qubits=circuit.num_qubits
+        if input_qubits< num_qubits:
+            print(f'input{input_qubits}  num:{num_qubits}')
         # Map the sliced feature vector to parameters
         parameters = feature_vectors[i]
         
         # Bind parameters and combine with the input circuit
-        qconv = circuit.append(qconv_layer.assign_parameters({f'θ[{i}]': param for i, param in enumerate(parameters)}))
+        qconv = QuantumCircuit(num_qubits)
+        qconv=qconv.compose(qconv_layer.assign_parameters(parameters))
+        combined_circuit=circuit.compose(qconv,qubits=list(range(num_qubits)))
         # Transpile the circuit for the specific backend
-        transpiled_circuit = transpile(qconv, backend)
+        
+        transpiled_circuit = transpile(combined_circuit, backend)
         transpiled_circuits.append(transpiled_circuit)
 
     return transpiled_circuits
@@ -51,28 +58,6 @@ def encode_with_zzfeaturemap(feature_vectors, num_qubits=3):
         transpiled_circuits.append(transpiled_circuit)
 
     return transpiled_circuits
-def quantum_pooling(statevectors, pool_size=2):
-    """
-    Applies a quantum pooling operation to reduce the feature dimension.
-    """
-    pooled_features = []
-    for statevector in statevectors:
-        # Ensure the statevector is in a 1D array
-        statevector = np.array(statevector)
-        
-        # Ensure the statevector size is appropriate for pooling
-        if len(statevector) >= pool_size:
-            # Simple pooling: sum or average the first `pool_size` basis states
-            feature = np.abs(statevector[:pool_size]) ** 2  # Take absolute squared values for probabilities
-        else:
-            # Handle the case where the statevector is smaller than the pool_size
-            feature = np.abs(statevector) ** 2
-        
-        pooled_features.append(feature)
-    
-    # Convert the list to a numpy array to ensure consistent shape
-    return np.array(pooled_features)
-
 
 def preprocess_batch(batch):
     # Extract data using the correct keys
@@ -117,9 +102,6 @@ if __name__ == '__main__':
             print(f"  - Transpiled circuits for quantum convolution:")
             print(f"    Example transpiled circuit:\n{qconv_circuits[0]}")
 
-            # Apply quantum pooling
-            pooled_features = quantum_pooling(qconv_circuits, pool_size=2)
-            print(f"  - Pooled feature shape: {pooled_features.shape}")
         except Exception as e:
             print(f"Error processing batch {batch_idx + 1}: {e}")
             break
