@@ -4,7 +4,6 @@ import torchreid.reid
 import torchreid.reid.data.datasets
 import torchreid.reid.data.datasets.video
 from torchvision import transforms
-import matplotlib.pyplot as plt
 
 # Wrap the execution code in the main guard
 if __name__ == '__main__':
@@ -19,7 +18,7 @@ if __name__ == '__main__':
 
     # Create the data manager for PRID2011
     datamanager = torchreid.data.VideoDataManager(
-        root='C:/Users/21k-4502/Desktop/prid_2011',  # Root directory for the dataset
+        root='',  # Root directory for the dataset
         sources='prid2011',  # Dataset name
         height=256,  # Image height after resize
         width=128,  # Image width after resize
