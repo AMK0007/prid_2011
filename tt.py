@@ -1,14 +1,12 @@
 import torch
 import numpy as np
-from PIL import Image
-import os
 from torchreid import data
 from sklearn.model_selection import train_test_split
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import Aer
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, average_precision_score
-from torch.utils.data import DataLoader
+
 
 # Use the DataManager to handle preprocessing
 def load_data_with_datamanager(dataset_path):

@@ -1,40 +1,45 @@
 import torch
 import numpy as np
 from torchreid import data
-from qiskit.circuit.library import ZZFeatureMap
+from qiskit import QuantumCircuit, transpile
 from qiskit_aer import Aer
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, average_precision_score
 
-def zz_feature_map_encoding(image, num_qubits):
+import numpy as np
+from qiskit import QuantumCircuit
+
+# Angle encoding function
+def angle_embedding(image):
+    return 2 * np.pi * image.flatten()  # Flatten and map pixel values to angle in [0, 2π]
+import numpy as np
+from qiskit import QuantumCircuit
+from qiskit.circuit import Parameter
+
+# Angle encoding function
+def angle_encoding(data, num_qubits, circuit=None):
     """
-    Encode the classical image data using ZZFeatureMap in Qiskit.
+    Encodes classical data into quantum circuit using angle encoding.
     
-    Args:
-    - image: The input image data, typically a flattened vector of pixel values.
-    - num_qubits: The number of qubits for encoding. This should match the number of features in the image.
+    Parameters:
+    - data: The input classical data (should be normalized or scaled appropriately)
+    - num_qubits: Number of qubits in the quantum circuit
+    - circuit: A pre-existing quantum circuit to apply encoding to (optional)
     
     Returns:
-    - quantum_circuit: The quantum circuit representing the encoded image.
+    - A quantum circuit with the data encoded into it
     """
-    # Normalize image to the range [0, 2*pi] for encoding
-    normalized_image = np.array(image) / np.max(image) * 2 * np.pi
-
-    # Ensure the size of the image matches the number of qubits
-    if len(normalized_image) != num_qubits:
-        raise ValueError(f"Image size {len(normalized_image)} does not match the number of qubits {num_qubits}.")
+    # If no circuit is provided, create a new quantum circuit
+    if circuit is None:
+        circuit = QuantumCircuit(64)
     
-    # Create a quantum circuit with the required number of qubits
-    feature_map = ZZFeatureMap(feature_dimension=num_qubits, reps=2)  # reps=2 for some entanglement depth
+    # Normalize or scale your data if needed (here we assume the data is already scaled)
+    for i in range(len(data)):
+        # Encode each classical feature into a qubit's rotation (RX, RY, or RZ)
+        angle = data[i]  # For simplicity, we directly use the data values as angles
+        circuit.rx(angle, i)  # Apply RX rotation on qubit i
     
-    # Bind the normalized image data to the parameters of the circuit
-    param_dict = {param: normalized_image[i] for i, param in enumerate(feature_map.parameters)}
-
-    # Assign parameters to the quantum circuit
-    quantum_circuit = feature_map.assign_parameters(param_dict)
-    
-    return quantum_circuit
-
+    return circuit
 
 if __name__ == '__main__':
 
@@ -52,15 +57,9 @@ if __name__ == '__main__':
     train_loader = datamanager.train_loader
     test_loader = datamanager.test_loader
 
-    # Use GPU for training if available
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
-    # Fully connected neural network (MLP)
-    fcn_classifier = MLPClassifier(hidden_layer_sizes=(128, 64), max_iter=1, warm_start=True, random_state=42)
-
     # Training Loop
     epochs = 1
-
+    num_qubits=8
     for epoch in range(epochs):
         print(f"Epoch {epoch + 1}/{epochs}")
         
@@ -71,40 +70,65 @@ if __name__ == '__main__':
         # Check what the train_loader returns
         for batch_idx, item in enumerate(train_loader):
             images = item['img']  # Access the 'img' tensor
-            labels = item['pid']  # Access the 'pid' (person ID)
+            labels = item['pid']     # Access the 'pid' (person ID)
 
             images = images.numpy()  # Convert tensor to numpy array after moving to CPU
+            
+            # Preprocess images: Convert images to quantum features
             for image in images:
-                # Flatten the image and calculate num_qubits based on the flattened size
-                flattened_image = image.flatten()
-                num_qubits = flattened_image.shape[0]  # Number of qubits = number of pixels in the image
-                
-                # Apply ZZFeatureMap encoding to the image
-                quantum_circuit = zz_feature_map_encoding(flattened_image, num_qubits)
-                print(quantum_circuit)
-                
-                # Use quantum simulator to process the quantum circuit
-                backend = Aer.get_backend('qasm_simulator')
-                result = backend.run(quantum_circuit).result()
-                statevector = result.get_statevector()
-
-                # Convert quantum state to classical feature vector (for simplicity)
-                feature_vector = np.real(statevector).flatten()[:num_qubits]
-                
-                # Append feature and label to training data
-                X_train_features.append(feature_vector)
-                y_train.append(labels[batch_idx])
-
-                # Clean up variables to free memory
-                del image, quantum_circuit, result, statevector, feature_vector
-
-        # Convert to numpy arrays for sklearn
-        X_train_features = np.array(X_train_features)
-        y_train = np.array(y_train)
+                angles = angle_embedding(image)
+                features = angle_encoding(angles, num_qubits)
+                print(features)
+        #         X_train_features.append(features)
+        #     y_train.extend(labels.numpy())  # Extend with batch labels
         
-        # Train the MLP classifier
-        fcn_classifier.fit(X_train_features, y_train)
+        # # Train the classifier on extracted quantum features
+        # fcn_classifier.fit(X_train_features, y_train)
         
-        print(f"Epoch {epoch + 1} completed.")
+        # # Evaluate on the test set
+        # X_test_features = []
+        # y_test = []
         
-        # Optional: Add evaluation on the test set here using similar feature extraction for the test set
+        # for batch_idx, item in enumerate(test_loader):
+        #     # Ensure images are tensors, move to CPU if using GPU
+        #     images = item['img']  # Access the 'img' tensor
+        #     labels = item['pid']     # Access the 'pid' (person ID)
+        #     images = images.numpy()  # Convert tensor to numpy array after moving to CPU
+            
+        #     # Preprocess images: Convert images to quantum features
+        #     for image in images:
+        #         angles = angle_embedding(image)
+        #         features = extract_quantum_features(angles, num_qubits)
+        #         X_test_features.append(features)
+        #     y_test.extend(labels.numpy())
+        
+        # # Predict on test data
+        # y_pred = fcn_classifier.predict(X_test_features)
+        
+        # # Evaluate accuracy
+        # accuracy = accuracy_score(y_test, y_pred)
+        # print(f"Accuracy of the FCN classifier: {accuracy * 100:.2f}%")
+        
+        # # Rank-1 and Rank-5 accuracy
+        # rank1_acc = rank_accuracy(y_test, y_pred, rank=1)
+        # rank5_acc = rank_accuracy(y_test, y_pred, rank=5)
+        
+        # print(f'Rank-1 Accuracy: {rank1_acc * 100:.2f}%')
+        # print(f'Rank-5 Accuracy: {rank5_acc * 100:.2f}%')
+        
+        # # Calculate Mean Average Precision (mAP)
+        # y_pred_probs = fcn_classifier.predict_proba(X_test_features)
+        # mAP = mean_average_precision(y_test, y_pred_probs)
+        # print(f'Mean Average Precision (mAP): {mAP:.2f}')
+        
+# Function to calculate Rank-1 and Rank-5 accuracies
+def rank_accuracy(true_ids, predicted_ids, rank=1):
+    correct = 0
+    for true_id, pred_ids in zip(true_ids, predicted_ids):
+        if true_id in pred_ids[:rank]:
+            correct += 1
+    return correct / len(true_ids)
+
+# Function to calculate Mean Average Precision (mAP)
+def mean_average_precision(true_ids, predicted_scores):
+    return np.mean([average_precision_score(true_ids == id, scores) for id, scores in predicted_scores.items()])
