@@ -8,7 +8,7 @@ import pennylane as qml
 
 # Define the quantum circuit using PennyLane
 n_qubits = 6
-dev = qml.device("lightning.gpu", wires=n_qubits)
+dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
 def qnode(inputs, weights):
