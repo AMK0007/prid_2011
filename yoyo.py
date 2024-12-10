@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     # Training Loop
     epochs = 1
-    num_qubits=8192git
+    num_qubits=8192
     for epoch in range(epochs):
         print(f"Epoch {epoch + 1}/{epochs}")
         
