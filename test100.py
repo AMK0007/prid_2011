@@ -5,15 +5,15 @@ import torchreid.reid.data.datasets
 import torchreid.reid.data.datasets.video
 from torchvision import transforms
 import pennylane as qml
-from pennylane import numpy as np
 
 # Define the quantum circuit using PennyLane
-n_qubits = 5
+n_qubits = 6
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
 def qnode(inputs, weights):
-    qml.AngleEmbedding(inputs, wires=range(n_qubits))
+    
+    qml.AmplitudeEmbedding(inputs, wires=range(n_qubits), pad_with=0.0, normalize=True)
     qml.BasicEntanglerLayers(weights, wires=range(n_qubits))
     return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_qubits)]
 
@@ -21,7 +21,6 @@ def qnode(inputs, weights):
 n_layers = 3
 weight_shapes = {"weights": (n_layers, n_qubits)}
 
-# Hybrid Model: Using quantum layers with a ResNet-based model for person re-id
 class HybridReIDModel(torch.nn.Module):
     def __init__(self, num_classes):
         super(HybridReIDModel, self).__init__()
@@ -37,25 +36,68 @@ class HybridReIDModel(torch.nn.Module):
         self.qlayer1 = qml.qnn.TorchLayer(qnode, weight_shapes)
         self.qlayer2 = qml.qnn.TorchLayer(qnode, weight_shapes)
 
-        # Fully connected layer
-        self.fc = torch.nn.Linear(2048 + 5 * 2, num_classes)  # ResNet feature + quantum features
+        # Additional layer to reduce the dimensionality of quantum features
+        self.fc_quantum = torch.nn.Linear(24, 12)  # Project from 24 to 12
+
+        # Fully connected layer for final classification
+        self.fc = torch.nn.Linear(12, num_classes)  # Final classification layer
 
     def forward(self, x):
         # Get features from the backbone
         features = self.backbone(x)
-
-        # Split features and pass through quantum layers
-        x_1, x_2 = torch.split(features, features.size(1)//2, dim=1)  # Split the features for the quantum layers
-        x_1 = self.qlayer1(x_1)
-        x_2 = self.qlayer2(x_2)
         
-        # Concatenate quantum outputs with classical features
-        x = torch.cat([x_1, x_2], dim=1)
+        # Ensure features fit into quantum layers
+        batch_size = features.size(0)
+        feature_size = features.size(1)
         
-        # Final classification layer
-        x = self.fc(x)
-        return x
+        # Initialize list to hold quantum features
+        quantum_features = []
+        
+        # Process input in chunks of 64 features at a time
+        for i in range(0, feature_size, 64):
+            # Select chunk of features (max size of 64)
+            chunk = features[:, i:i+64]
+            
+            # Ensure that the chunk has a valid size before processing
+            if chunk.size(1) == 0:
+                continue  # Skip empty chunks
+            
+            # Process the chunk through quantum layers
+            half_size = chunk.size(1) // 2  # Divide the chunk into two parts
+            chunk_1 = chunk[:, :half_size]  # First half of the chunk
+            chunk_2 = chunk[:, half_size:]  # Second half of the chunk
+            
+            # Ensure that both chunks have valid sizes
+            if chunk_1.size(1) > 0 and chunk_2.size(1) > 0:
+                q1 = self.qlayer1(chunk_1)
+                q2 = self.qlayer2(chunk_2)
+                
+                # Append quantum outputs
+                quantum_features.append(torch.cat([q1, q2], dim=1))
+        
+        # Concatenate all quantum features
+        if len(quantum_features) > 0:
+            quantum_features = torch.cat(quantum_features, dim=1)
+        
+        # Ensure that quantum features have a valid size before passing to fc_quantum
+        print("Quantum features shape before fc_quantum:", quantum_features.shape)
+        
+        # Flatten or reshape quantum features to match input size (24) for fc_quantum
+        quantum_features = quantum_features.view(batch_size, -1)  # Flatten if needed
+        if quantum_features.size(1) > 24:
+            quantum_features = quantum_features[:, :24]  # Slice if necessary
 
+        quantum_features = self.fc_quantum(quantum_features)
+        
+        # Ensure quantum_features has the expected shape
+        quantum_features = quantum_features.view(batch_size, -1)  # Flatten if needed
+        # Slice or reshape quantum_features to match fc input size (12 features)
+        if quantum_features.size(1) > 12:
+            quantum_features = quantum_features[:, :12]
+
+        out = self.fc(quantum_features)
+        
+        return out
 
 # Wrap the execution code in the main guard
 if __name__ == '__main__':
@@ -75,7 +117,7 @@ if __name__ == '__main__':
         height=256,  
         width=128,  
         batch_size_train=32,  
-        batch_size_test=100,  
+        batch_size_test=89,  
         seq_len=15,  
         sample_method='evenly',  
         transforms=['random_flip', 'random_crop', 'resize', 'normalize']  
@@ -119,8 +161,8 @@ if __name__ == '__main__':
 
     # Train the model
     engine.run(
-        max_epoch=25,  
-        save_dir='log/hybrid_resnet50',  
-        print_freq=5,  
-        test_only=False  
+        max_epoch=5,  
+        save_dir='log/hybrid_resnet503',  
+        print_freq=1,  
+        test_only=True
     )
