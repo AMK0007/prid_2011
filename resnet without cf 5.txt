@@ -1,0 +1,326 @@
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Building train transforms ...
++ resize to 256x128
++ random flip
++ random crop (enlarge to 288x144 and crop 256x128)
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+Building test transforms ...
++ resize to 256x128
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+=> Loading train (source) dataset
+=> Loaded PRID2011
+  -------------------------------------------
+  subset   | # ids | # tracklets | # cameras 
+  -------------------------------------------
+  train    |    89 |         178 |         2 
+  query    |    89 |          89 |         1
+  gallery  |    89 |          89 |         1
+  -------------------------------------------
+=> Loading test (target) dataset
+=> Loaded PRID2011
+  -------------------------------------------
+  subset   | # ids | # tracklets | # cameras
+  -------------------------------------------
+  train    |    89 |         178 |         2
+  query    |    89 |          89 |         1
+  gallery  |    89 |          89 |         1
+  -------------------------------------------
+
+
+  **************** Summary ****************
+  source             : ['prid2011']
+  # source datasets  : 1
+  # source ids       : 89
+  # source tracklets : 178
+  # source cameras   : 2
+  target             : ['prid2011']
+  *****************************************
+
+
+=> Start training
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [1/5][1/5]       time 44.085 (44.085)    data 11.240 (11.240)    eta 0:17:38     loss 4.4707 (4.4707)    acc 3.1250 (3.1250)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [1/5][2/5]       time 25.554 (34.819)    data 0.000 (5.620)      eta 0:13:20     loss 4.5041 (4.4874)    acc 2.7083 (2.9167)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [1/5][3/5]       time 26.069 (31.903)    data 0.000 (3.747)      eta 0:11:41     loss 4.5068 (4.4939)    acc 0.2083 (2.0139)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [1/5][4/5]       time 26.664 (30.593)    data 0.000 (2.810)      eta 0:10:42     loss 4.5194 (4.5002)    acc 1.8750 (1.9792)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [1/5][5/5]       time 27.456 (29.966)    data 0.000 (2.248)      eta 0:09:59     loss 4.5623 (4.5127)    acc 0.0000 (1.5833)     lr 0.000300
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [2/5][1/5]       time 37.169 (37.169)    data 11.162 (11.162)    eta 0:11:46     loss 4.4691 (4.4691)    acc 1.0417 (1.0417)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [2/5][2/5]       time 26.443 (31.806)    data 0.000 (5.581)      eta 0:09:32     loss 4.4529 (4.4610)    acc 0.8333 (0.9375)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [2/5][3/5]       time 27.498 (30.370)    data 0.001 (3.721)      eta 0:08:36     loss 4.3943 (4.4387)    acc 11.4583 (4.4444)    lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [2/5][4/5]       time 27.234 (29.586)    data 0.000 (2.791)      eta 0:07:53     loss 4.4005 (4.4292)    acc 7.7083 (5.2604)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [2/5][5/5]       time 26.465 (28.962)    data 0.000 (2.233)      eta 0:07:14     loss 4.4424 (4.4318)    acc 6.2500 (5.4583)     lr 0.000300
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [3/5][1/5]       time 38.589 (38.589)    data 11.385 (11.385)    eta 0:09:00     loss 4.3335 (4.3335)    acc 3.9583 (3.9583)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [3/5][2/5]       time 26.394 (32.492)    data 0.000 (5.693)      eta 0:07:02     loss 4.2627 (4.2981)    acc 17.7083 (10.8333)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [3/5][3/5]       time 27.597 (30.860)    data 0.000 (3.795)      eta 0:06:10     loss 4.3499 (4.3154)    acc 9.3750 (10.3472)    lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [3/5][4/5]       time 26.948 (29.882)    data 0.000 (2.846)      eta 0:05:28     loss 4.3722 (4.3296)    acc 6.6667 (9.4271)     lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [3/5][5/5]       time 26.411 (29.188)    data 0.001 (2.277)      eta 0:04:51     loss 4.3370 (4.3311)    acc 9.1667 (9.3750)     lr 0.000300
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [4/5][1/5]       time 37.384 (37.384)    data 11.173 (11.173)    eta 0:05:36     loss 4.2693 (4.2693)    acc 11.0417 (11.0417)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [4/5][2/5]       time 25.762 (31.573)    data 0.000 (5.587)      eta 0:04:12     loss 4.2364 (4.2529)    acc 17.9167 (14.4792)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [4/5][3/5]       time 26.068 (29.738)    data 0.000 (3.724)      eta 0:03:28     loss 4.2357 (4.2472)    acc 7.0833 (12.0139)    lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [4/5][4/5]       time 26.305 (28.880)    data 0.000 (2.793)      eta 0:02:53     loss 4.2416 (4.2458)    acc 13.5417 (12.3958)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [4/5][5/5]       time 26.070 (28.318)    data 0.000 (2.235)      eta 0:02:21     loss 4.2066 (4.2379)    acc 17.9167 (13.5000)   lr 0.000300
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [5/5][1/5]       time 36.886 (36.886)    data 10.968 (10.968)    eta 0:02:27     loss 4.0974 (4.0974)    acc 31.2500 (31.2500)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [5/5][2/5]       time 26.796 (31.841)    data 0.000 (5.484)      eta 0:01:35     loss 4.1498 (4.1236)    acc 19.1667 (25.2083)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [5/5][3/5]       time 26.325 (30.002)    data 0.000 (3.656)      eta 0:01:00     loss 4.0624 (4.1032)    acc 35.0000 (28.4722)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [5/5][4/5]       time 26.020 (29.006)    data 0.000 (2.742)      eta 0:00:29     loss 4.0945 (4.1010)    acc 18.3333 (25.9375)   lr 0.000300
+Input shape: torch.Size([480, 3, 256, 128])
+backbone shape: torch.Size([480, 3, 256, 128])
+backbonefc shape: torch.Size([480, 3, 256, 128])
+qnode torch.Size([480, 64])
+qnode torch.Size([480, 64])
+epoch: [5/5][5/5]       time 25.998 (28.405)    data 0.000 (2.194)      eta 0:00:00     loss 4.1343 (4.1077)    acc 17.5000 (24.2500)   lr 0.000300
+=> Final test
+##### Evaluating prid2011 (source) #####
+Extracting features from query set ...
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([1335, 3, 256, 128])
+backbone shape: torch.Size([1335, 3, 256, 128])
+backbonefc shape: torch.Size([1335, 3, 256, 128])
+qnode torch.Size([1335, 64])
+qnode torch.Size([1335, 64])
+Done, obtained 89-by-89 matrix
+Extracting features from gallery set ...
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([1335, 3, 256, 128])
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([1335, 3, 256, 128])
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([1335, 3, 256, 128])
+backbone shape: torch.Size([1335, 3, 256, 128])
+backbonefc shape: torch.Size([1335, 3, 256, 128])
+qnode torch.Size([1335, 64])
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([1335, 3, 256, 128])
+backbone shape: torch.Size([1335, 3, 256, 128])
+backbonefc shape: torch.Size([1335, 3, 256, 128])
+qnode torch.Size([1335, 64])
+qnode torch.Size([1335, 64])
+Done, obtained 89-by-89 matrix
+Speed: 27.7504 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+G:\K214502\FYP\prid_2011\.venv\Lib\site-packages\torchreid\reid\metrics\rank.py:11: UserWarning: Cython evaluation (very fast so highly recommended) is unavailable, now use python evaluation.
+  warnings.warn(
+Input shape: torch.Size([1335, 3, 256, 128])
+backbone shape: torch.Size([1335, 3, 256, 128])
+backbonefc shape: torch.Size([1335, 3, 256, 128])
+qnode torch.Size([1335, 64])
+qnode torch.Size([1335, 64])
+Done, obtained 89-by-89 matrix
+Speed: 27.7504 sec/batch
+backbone shape: torch.Size([1335, 3, 256, 128])
+backbonefc shape: torch.Size([1335, 3, 256, 128])
+qnode torch.Size([1335, 64])
+qnode torch.Size([1335, 64])
+Done, obtained 89-by-89 matrix
+Speed: 27.7504 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+Done, obtained 89-by-89 matrix
+Speed: 27.7504 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 30.8%
+CMC curve
+** Results **
+mAP: 30.8%
+CMC curve
+Rank-1  : 18.0%
+Rank-5  : 39.3%
+Rank-10 : 60.7%
+Rank-20 : 75.3%
+Rank-1  : 18.0%
+Rank-5  : 39.3%
+Rank-10 : 60.7%
+Rank-20 : 75.3%
+Checkpoint saved to "log/hybrid_resnet505\model\model.pth.tar-5"
+Checkpoint saved to "log/hybrid_resnet505\model\model.pth.tar-5"
+Elapsed 0:13:28
+(.venv) PS G:\K214502\FYP\prid_2011>

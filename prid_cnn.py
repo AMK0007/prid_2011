@@ -52,7 +52,6 @@ if __name__ == '__main__':
         loss='softmax',  # Loss function
         pretrained=True  # Use pretrained weights
     ).cuda()  # Move the model to GPU
-
     # Build the optimizer
     optimizer = torchreid.optim.build_optimizer(
         model,
@@ -79,8 +78,9 @@ if __name__ == '__main__':
 
     # Train the model
     engine.run(
-        max_epoch=25,  # Number of training epochs
+        max_epoch=30,  # Number of training epochs
         save_dir='log/resnet50',  # Directory to save logs and model
-        print_freq=5,  # Frequency to print training logs
-        test_only=False  # Set to True if only testing
+        print_freq=1,  # Frequency to print training logs
+        test_only=False,  # Set to True if only testing
+        eval_freq=1
     )

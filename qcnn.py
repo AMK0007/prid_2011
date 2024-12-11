@@ -30,74 +30,39 @@ class HybridReIDModel(torch.nn.Module):
             name='resnet50', 
             num_classes=num_classes,  
             loss='softmax',  
-            pretrained=True  
+            pretrained=True,
         ).cuda()  # Moving to GPU
-
+        self.backbonefc= torch.nn.Linear(2048, 128)
         # Quantum layers
         self.qlayer1 = qml.qnn.TorchLayer(qnode, weight_shapes)
         self.qlayer2 = qml.qnn.TorchLayer(qnode, weight_shapes)
 
         # Additional layer to reduce the dimensionality of quantum features
-       # self.fc_quantum = torch.nn.Linear(24, 12)  # Project from 24 to 12
 
         # Fully connected layer for final classification
         self.fc = torch.nn.Linear(12, num_classes)  # Final classification layer
 
     def forward(self, x):
+        print(f"Input shape: {x.shape}")  # Expect (N, 3, 256, 128)
         # Get features from the backbone
         features = self.backbone(x)
-        print(f"backbone {features.shape}")
-        # Ensure features fit into quantum layers
-        batch_size = features.size(0)
-        feature_size = features.size(1)
+        print(f"backbone shape: {x.shape}")
+        features= self.backbonefc(features)
+        print(f"backbonefc shape: {x.shape}")
+        # Split features and pass through quantum layers
+        half_size = features.size(1) // 2  # Integer division for half size
+        x_1 = features[:, :half_size]  # First part
+        x_2 = features[:, half_size:]  # Second part (will get the remainder)
+        x_1 = self.qlayer1(x_1)
+        x_2 = self.qlayer2(x_2)
         
-        # Initialize list to hold quantum features
-        quantum_features = []
+        # Concatenate quantum outputs with classical features
+        x = torch.cat([x_1, x_2], dim=1)
         
-        # Process input in chunks of 64 features at a time
-        for i in range(0, feature_size, 64):
-            # Select chunk of features (max size of 64)
-            chunk = features[:, i:i+64]
-            
-            # Ensure that the chunk has a valid size before processing
-            if chunk.size(1) == 0:
-                continue  # Skip empty chunks
-            
-            # Process the chunk through quantum layers
-            half_size = chunk.size(1) // 2  # Divide the chunk into two parts
-            chunk_1 = chunk[:, :half_size]  # First half of the chunk
-            chunk_2 = chunk[:, half_size:]  # Second half of the chunk
-            
-            # Ensure that both chunks have valid sizes
-            if chunk_1.size(1) > 0 and chunk_2.size(1) > 0:
-                q1 = self.qlayer1(chunk_1)
-                print(f"batch {i} q1 {q1.shape}")
-                q2 = self.qlayer2(chunk_2)
-                print(f"batch {i} {q2.shape}")
-                # Append quantum outputs
-                quantum_features.append(torch.cat([q1, q2], dim=1))
-        # Concatenate all quantum features
-        if len(quantum_features) > 0:
-            quantum_features = torch.cat(quantum_features, dim=1)
-        # Ensure that quantum features have a valid size before passing to fc_quantum
-        print("Quantum features shape before fc_quantum:", quantum_features.shape)
-        
-        # Flatten or reshape quantum features to match input size (24) for fc_quantum
-        # quantum_features = quantum_features.view(batch_size, -1)  # Flatten if needed
-        # if quantum_features.size(1) > 24:
-        #     quantum_features = quantum_features[:, :24]  # Slice if necessary
-
-        # quantum_features = self.fc_quantum(quantum_features)
-        
-        # Ensure quantum_features has the expected shape
-        quantum_features = quantum_features.view(batch_size, -1)  # Flatten if needed
-        # Slice or reshape quantum_features to match fc input size (12 features)
-        if quantum_features.size(1) > 12:
-            quantum_features = quantum_features[:, :12]
-
-        out = self.fc(quantum_features)
-        
-        return out
+        #print(x.size())  # Check the shape of the tensor
+  # Ensure the shape matches the expected input for self.fc
+        x = self.fc(x)
+        return x
 
 # Wrap the execution code in the main guard
 if __name__ == '__main__':
@@ -132,7 +97,6 @@ if __name__ == '__main__':
 
     # Number of classes in the dataset (number of unique IDs in the training set)
     num_classes = datamanager.num_train_pids
-
     # Instantiate the hybrid model
     model = HybridReIDModel(num_classes).cuda()
 
@@ -161,7 +125,7 @@ if __name__ == '__main__':
 
     # Train the model
     engine.run(
-        max_epoch=1,  
+        max_epoch=10,  
         save_dir='log/hybrid_resnet505',  
         print_freq=1,  
         test_only=False
