@@ -1,0 +1,59 @@
+epoch 1
+Speed: 20.5910 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 21.6%
+CMC curve
+Rank-1  : 10.1%
+Rank-5  : 30.3%
+Rank-10 : 48.3%
+Rank-20 : 69.7%
+
+epoch 2
+Speed: 24.2577 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 28.7%
+CMC curve
+Rank-1  : 14.6%
+Rank-5  : 43.8%
+Rank-10 : 58.4%
+Rank-20 : 67.4%
+
+epoch 3
+Speed: 18.8983 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 35.3%
+CMC curve
+Rank-1  : 22.5%
+Rank-5  : 48.3%
+Rank-10 : 62.9%
+Rank-20 : 85.4%
+
+epoch 4
+Speed: 20.1785 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 32.5%
+CMC curve
+Rank-1  : 20.2%
+Rank-5  : 42.7%
+Rank-10 : 62.9%
+Rank-20 : 78.7%
+
+epoch 5
+Speed: 23.3777 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 32.4%
+CMC curve
+Rank-1  : 19.1%
+Rank-5  : 46.1%
+Rank-10 : 57.3%
+Rank-20 : 76.4%

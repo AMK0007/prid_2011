@@ -125,8 +125,9 @@ if __name__ == '__main__':
 
     # Train the model
     engine.run(
-        max_epoch=10,  
+        max_epoch=30,  
         save_dir='log/hybrid_resnet505',  
         print_freq=1,  
-        test_only=False
+        test_only=False,
+        eval_freq=1
     )
