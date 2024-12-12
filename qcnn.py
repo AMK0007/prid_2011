@@ -12,7 +12,7 @@ dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
 def qnode(inputs, weights):
-    print(f"qnode {inputs.shape}")
+    #print(f"qnode {inputs.shape}")
     
     qml.AmplitudeEmbedding(inputs, wires=range(n_qubits), pad_with=0.0, normalize=True)
     qml.BasicEntanglerLayers(weights, wires=range(n_qubits))
@@ -43,12 +43,12 @@ class HybridReIDModel(torch.nn.Module):
         self.fc = torch.nn.Linear(12, num_classes)  # Final classification layer
 
     def forward(self, x):
-        print(f"Input shape: {x.shape}")  # Expect (N, 3, 256, 128)
+        #print(f"Input shape: {x.shape}")  # Expect (N, 3, 256, 128)
         # Get features from the backbone
         features = self.backbone(x)
-        print(f"backbone shape: {x.shape}")
+        #print(f"backbone shape: {x.shape}")
         features= self.backbonefc(features)
-        print(f"backbonefc shape: {x.shape}")
+       # print(f"backbonefc shape: {x.shape}")
         # Split features and pass through quantum layers
         half_size = features.size(1) // 2  # Integer division for half size
         x_1 = features[:, :half_size]  # First part
