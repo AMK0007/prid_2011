@@ -8,21 +8,19 @@ import pennylane as qml
 
 # Define the quantum circuit using PennyLane
 n_qubits = 6
+n_layers = 12  # Increased quantum layers depth
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
 def qnode(inputs, weights):
-
-    
     qml.AmplitudeEmbedding(inputs, wires=range(n_qubits), pad_with=0.0, normalize=True)
     qml.BasicEntanglerLayers(weights, wires=range(n_qubits))
     return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_qubits)]
 
-# Define the QLayer
-n_layers = 3
+# Define weight shapes for quantum layers
 weight_shapes = {"weights": (n_layers, n_qubits)}
 
-# Hybrid Model: Using quantum layers with a ResNet-based model for person re-id
+# Define the hybrid model with 4 quantum layers
 class HybridReIDModel(torch.nn.Module):
     def __init__(self, num_classes):
         super(HybridReIDModel, self).__init__()
@@ -31,39 +29,42 @@ class HybridReIDModel(torch.nn.Module):
             name='resnet50', 
             num_classes=num_classes,  
             loss='softmax',  
-            pretrained=True  
-        ).cuda()  # Moving to GPU
+            pretrained=True,
+        ).cuda()
+        self.backbonefc = torch.nn.Linear(2048, 128)
 
-        # Quantum layers
+        # Increased quantum layers (from 2 to 4)
         self.qlayer1 = qml.qnn.TorchLayer(qnode, weight_shapes)
         self.qlayer2 = qml.qnn.TorchLayer(qnode, weight_shapes)
+        self.qlayer3 = qml.qnn.TorchLayer(qnode, weight_shapes)
+        self.qlayer4 = qml.qnn.TorchLayer(qnode, weight_shapes)
 
-        # Fully connected layer
-        self.fc = torch.nn.Linear(12, num_classes)  # ResNet feature + quantum features
+        # Fully connected layer for classification
+        self.fc = torch.nn.Linear(24, num_classes)  # 4 * 6 = 24 quantum outputs
 
     def forward(self, x):
-        # Get features from the backbone
         features = self.backbone(x)
-        features = features[:, :64] 
-       # print(features.size())
-        # Split features and pass through quantum layers
-        half_size = features.size(1) // 2  # Integer division for half size
-        x_1 = features[:, :half_size]  # First part
-        x_2 = features[:, half_size:]  # Second part (will get the remainder)
+        features = self.backbonefc(features)
+
+        # Splitting features for quantum processing (4-way split)
+        quarter_size = features.size(1) // 4
+        x_1 = features[:, :quarter_size]
+        x_2 = features[:, quarter_size:2*quarter_size]
+        x_3 = features[:, 2*quarter_size:3*quarter_size]
+        x_4 = features[:, 3*quarter_size:]
+
+        # Passing through four quantum layers
         x_1 = self.qlayer1(x_1)
         x_2 = self.qlayer2(x_2)
-        
-        # Concatenate quantum outputs with classical features
-        x = torch.cat([x_1, x_2], dim=1)
-        
-        #print(x.size())  # Check the shape of the tensor
-        x = x.view(-1, 12)  # This will flatten the second dimension, keeping 12 features per sample.
-  # Ensure the shape matches the expected input for self.fc
+        x_3 = self.qlayer3(x_3)
+        x_4 = self.qlayer4(x_4)
+
+        # Concatenating quantum outputs and classifying
+        x = torch.cat([x_1, x_2, x_3, x_4], dim=1)
         x = self.fc(x)
         return x
 
-
-# Wrap the execution code in the main guard
+# Wrap execution in the main guard
 if __name__ == '__main__':
     # Define the transformations using torchvision
     transform_pipeline = transforms.Compose([
@@ -74,7 +75,7 @@ if __name__ == '__main__':
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
 
-    # Create the data manager for PRID2011
+    # Create the data manager for PRID2011 dataset
     datamanager = torchreid.data.VideoDataManager(
         root='',  
         sources='prid2011',  
@@ -87,14 +88,13 @@ if __name__ == '__main__':
         transforms=['random_flip', 'random_crop', 'resize', 'normalize']  
     )
 
-    # Access the train and test loaders
+    # Access train and test loaders
     train_loader = datamanager.train_loader  
     test_loader = datamanager.test_loader  
-
     query_loader = test_loader['prid2011']['query']
     gallery_loader = test_loader['prid2011']['gallery']
 
-    # Number of classes in the dataset (number of unique IDs in the training set)
+    # Get number of classes
     num_classes = datamanager.num_train_pids
 
     # Instantiate the hybrid model
@@ -113,7 +113,7 @@ if __name__ == '__main__':
         stepsize=20  
     )
 
-    # Create the training engine
+    # Create training engine
     engine = torchreid.engine.VideoSoftmaxEngine(
         datamanager,
         model,
@@ -125,8 +125,9 @@ if __name__ == '__main__':
 
     # Train the model
     engine.run(
-        max_epoch=10,  
-        save_dir='log/hybrid_resnet502',  
+        max_epoch=30,  
+        save_dir='log/hybrid_resnet50_q4layers',  
         print_freq=1,  
-        test_only=False
+        test_only=False,
+        eval_freq=1
     )
