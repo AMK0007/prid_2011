@@ -16,13 +16,18 @@ class ResNetReIDModel(torch.nn.Module):
             loss='softmax',  
             pretrained=True,
         ).cuda()  # Move to GPU
-
+        self.backbonefc= torch.nn.Linear(2048, 128)
+        self.fc = torch.nn.Linear(128, num_classes)
     def forward(self, x):
         features = self.backbone(x)
+        features= self.backbonefc(features)
+        x = self.fc(features)
         return features
 
 # Main Execution
 if __name__ == '__main__':
+    torch.cuda.empty_cache()
+    
     # PRID2011 Data Manager
     datamanager = torchreid.data.VideoDataManager(
         root='',  
@@ -59,7 +64,7 @@ if __name__ == '__main__':
 
     # Train ResNet50
     engine.run(
-        max_epoch=30,  
+        max_epoch=5,  
         save_dir='log/resnet50',  
         print_freq=1,  
         test_only=False,
