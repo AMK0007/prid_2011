@@ -34,7 +34,7 @@ if __name__ == '__main__':
         sources='prid2011',  
         height=256,  
         width=128,  
-        batch_size_train=32,  
+        batch_size_train=4,  
         batch_size_test=89,  
         seq_len=15,  
         sample_method='evenly',  
