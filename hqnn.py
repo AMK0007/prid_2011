@@ -81,8 +81,8 @@ if __name__ == '__main__':
         sources='prid2011',  
         height=256,  
         width=128,  
-        batch_size_train=32,  
-        batch_size_test=89,  
+        batch_size_train=8,  
+        batch_size_test=32,  
         seq_len=15,  
         sample_method='evenly',  
         transforms=['random_flip', 'random_crop', 'resize', 'normalize']  
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
     # Train the model
     engine.run(
-        max_epoch=30,  
+        max_epoch=5,  
         save_dir='log/hybrid_resnet505',  
         print_freq=1,  
         test_only=False,

@@ -7,6 +7,7 @@ from torchvision import transforms
 
 # Wrap the execution code in the main guard
 if __name__ == '__main__':
+    torch.cuda.empty_cache()
     # Define the transformations using torchvision
     transform_pipeline = transforms.Compose([
         transforms.RandomHorizontalFlip(),  # Random flip for augmentation
@@ -22,8 +23,8 @@ if __name__ == '__main__':
         sources='prid2011',  # Dataset name
         height=256,  # Image height after resize
         width=128,  # Image width after resize
-        batch_size_train=32,  # Batch size for training
-        batch_size_test=100,  # Batch size for testing
+        batch_size_train=8,  # Batch size for training
+        batch_size_test=32,  # Batch size for testing
         seq_len=15,  # Sequence length (for video datasets)
         sample_method='evenly',  # Sampling method for sequence
         transforms=['random_flip', 'random_crop', 'resize', 'normalize']  # Transformations to apply
