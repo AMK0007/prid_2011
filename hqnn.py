@@ -6,114 +6,97 @@ import torchreid.reid.data.datasets.video
 from torchvision import transforms
 import pennylane as qml
 
-# Define the quantum circuit using PennyLane
+# ==== PARAMETERS ====
 n_qubits = 6
+n_layers =1
+
+# Define the quantum device
 dev = qml.device("default.qubit", wires=n_qubits)
 
+# Define the quantum circuit using PennyLane
 @qml.qnode(dev)
 def qnode(inputs, weights):
-    #print(f"qnode {inputs.shape}")
-    
     qml.AmplitudeEmbedding(inputs, wires=range(n_qubits), pad_with=0.0, normalize=True)
     qml.BasicEntanglerLayers(weights, wires=range(n_qubits))
     return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_qubits)]
 
-# Define the QLayer
-n_layers = 3
+# Set weight shapes using generic parameters
 weight_shapes = {"weights": (n_layers, n_qubits)}
 
+# ==== Hybrid Model Definition ====
 class HybridReIDModel(torch.nn.Module):
     def __init__(self, num_classes):
         super(HybridReIDModel, self).__init__()
-        # Pre-trained ResNet50 for feature extraction
         self.backbone = torchreid.models.build_model(
-            name='resnet50', 
-            num_classes=num_classes,  
-            loss='softmax',  
+            name='resnet50',
+            num_classes=num_classes,
+            loss='softmax',
             pretrained=True,
-        ).cuda()  # Moving to GPU
-        self.backbonefc= torch.nn.Linear(2048, 128)
-        # Quantum layers
-        self.qlayer1 = qml.qnn.TorchLayer(qnode, weight_shapes)
-        self.qlayer2 = qml.qnn.TorchLayer(qnode, weight_shapes)
+        ).cuda()
 
-        # Additional layer to reduce the dimensionality of quantum features
+        # Classical head projecting into n_layers * n_qubits
+        self.backbonefc = torch.nn.Linear(2048, n_layers * (2**n_qubits))
 
-        # Fully connected layer for final classification
-        self.fc = torch.nn.Linear(12, num_classes)  # Final classification layer
+        # Create quantum layers dynamically
+        self.qlayers = torch.nn.ModuleList([
+            qml.qnn.TorchLayer(qnode, weight_shapes) for _ in range(n_layers)
+        ])
+
+        # Final classification layer
+        self.fc = torch.nn.Linear(n_layers * n_qubits, num_classes)
 
     def forward(self, x):
-        #print(f"Input shape: {x.shape}")  # Expect (N, 3, 256, 128)
-        # Get features from the backbone
         features = self.backbone(x)
-        #print(f"backbone shape: {x.shape}")
-        features= self.backbonefc(features)
-       # print(f"backbonefc shape: {x.shape}")
-        # Split features and pass through quantum layers
-        half_size = features.size(1) // 2  # Integer division for half size
-        x_1 = features[:, :half_size]  # First part
-        x_2 = features[:, half_size:]  # Second part (will get the remainder)
-        x_1 = self.qlayer1(x_1)
-        x_2 = self.qlayer2(x_2)
-        
-        # Concatenate quantum outputs with classical features
-        x = torch.cat([x_1, x_2], dim=1)
-        
-        #print(x.size())  # Check the shape of the tensor
-  # Ensure the shape matches the expected input for self.fc
+        features = self.backbonefc(features)
+
+        # Split into chunks for each quantum layer
+        chunks = torch.chunk(features, n_layers, dim=1)
+        quantum_outputs = []
+
+        for i in range(n_layers):
+            q_out = self.qlayers[i](chunks[i])
+            quantum_outputs.append(q_out)
+
+        # Concatenate outputs from all quantum layers
+        x = torch.cat(quantum_outputs, dim=1)
         x = self.fc(x)
         return x
 
-# Wrap the execution code in the main guard
+# ==== Main Training Code ====
 if __name__ == '__main__':
-    # Define the transformations using torchvision
-    transform_pipeline = transforms.Compose([
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomResizedCrop(256, scale=(0.8, 1.0)),
-        transforms.Resize((256, 128)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
 
-    # Create the data manager for PRID2011
     datamanager = torchreid.data.VideoDataManager(
-        root='',  
-        sources='prid2011',  
-        height=256,  
-        width=128,  
-        batch_size_train=8,  
-        batch_size_test=32,  
-        seq_len=15,  
-        sample_method='evenly',  
-        transforms=['random_flip', 'random_crop', 'resize', 'normalize']  
+        root='',
+        sources='prid2011',
+        height=256,
+        width=128,
+        batch_size_train=32,
+        batch_size_test=64,
+        seq_len=15,
+        sample_method='evenly',
+        transforms=['random_flip', 'random_crop', 'resize', 'normalize']
     )
-    
-    # Access the train and test loaders
-    train_loader = datamanager.train_loader  
-    test_loader = datamanager.test_loader  
 
+    train_loader = datamanager.train_loader
+    test_loader = datamanager.test_loader
     query_loader = test_loader['prid2011']['query']
     gallery_loader = test_loader['prid2011']['gallery']
 
-    # Number of classes in the dataset (number of unique IDs in the training set)
     num_classes = datamanager.num_train_pids
-    # Instantiate the hybrid model
     model = HybridReIDModel(num_classes).cuda()
 
-    # Build the optimizer and scheduler
     optimizer = torchreid.optim.build_optimizer(
         model,
-        optim='adam', 
-        lr=0.0003  
+        optim='adam',
+        lr=0.0003
     )
 
     scheduler = torchreid.optim.build_lr_scheduler(
         optimizer,
-        lr_scheduler='single_step',  
-        stepsize=20  
+        lr_scheduler='single_step',
+        stepsize=20
     )
 
-    # Create the training engine
     engine = torchreid.engine.VideoSoftmaxEngine(
         datamanager,
         model,
@@ -123,11 +106,10 @@ if __name__ == '__main__':
         use_gpu=True,
     )
 
-    # Train the model
     engine.run(
-        max_epoch=5,  
-        save_dir='log/hybrid_resnet505',  
-        print_freq=1,  
-        test_only=False,
+        max_epoch=30,
+        save_dir='log/hybrid_resnet50_dynamic_layers1',
+        print_freq=1,
+        test_only=True,
         eval_freq=1
     )

@@ -7,8 +7,8 @@ from torchvision import transforms
 import pennylane as qml
 
 # Define the quantum circuit using PennyLane
-n_qubits = 8
-n_layers = 8
+n_qubits = 6
+n_layers = 32
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
@@ -81,8 +81,8 @@ if __name__ == '__main__':
         sources='prid2011',  
         height=256,  
         width=128,  
-        batch_size_train=8,  
-        batch_size_test=32,  
+        batch_size_train=32,  
+        batch_size_test=64,  
         seq_len=15,  
         sample_method='evenly',  
         transforms=['random_flip', 'random_crop', 'resize', 'normalize']  

@@ -1,0 +1,552 @@
+epoch: [1/30][1/5]      time 36.026 (36.026)    data 12.329 (12.329)    eta 1:29:27     loss 4.5039 (4.5039)    acc 2.2917 (2.2917)     lr 0.000300
+epoch: [1/30][2/5]      time 18.428 (27.227)    data 0.000 (6.164)      eta 1:07:09     loss 4.4384 (4.4711)    acc 0.0000 (1.1458)     lr 0.000300
+epoch: [1/30][3/5]      time 18.506 (24.320)    data 0.000 (4.110)      eta 0:59:35     loss 4.5574 (4.4999)    acc 1.0417 (1.1111)     lr 0.000300
+epoch: [1/30][4/5]      time 18.532 (22.873)    data 0.000 (3.082)      eta 0:55:39     loss 4.6060 (4.5264)    acc 0.0000 (0.8333)     lr 0.000300
+epoch: [1/30][5/5]      time 18.451 (21.989)    data 0.000 (2.466)      eta 0:53:08     loss 4.5831 (4.5377)    acc 1.2500 (0.9167)     lr 0.000300
+
+Speed: 10.8961 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 13.5%
+CMC curve
+Rank-1  : 4.5%
+Rank-5  : 21.3%
+Rank-10 : 30.3%
+Rank-20 : 39.3%
+
+
+epoch: [2/30][1/5]      time 31.585 (31.585)    data 12.742 (12.742)    eta 1:15:48     loss 4.5283 (4.5283)    acc 0.0000 (0.0000)     lr 0.000300
+epoch: [2/30][2/5]      time 18.494 (25.039)    data 0.000 (6.371)      eta 0:59:40     loss 4.4220 (4.4752)    acc 1.6667 (0.8333)     lr 0.000300
+epoch: [2/30][3/5]      time 18.546 (22.875)    data 0.000 (4.247)      eta 0:54:08     loss 4.5091 (4.4865)    acc 4.1667 (1.9444)     lr 0.000300
+epoch: [2/30][4/5]      time 18.498 (21.781)    data 0.000 (3.185)      eta 0:51:11     loss 4.4596 (4.4798)    acc 0.0000 (1.4583)     lr 0.000300
+epoch: [2/30][5/5]      time 18.553 (21.135)    data 0.000 (2.548)      eta 0:49:18     loss 4.4710 (4.4780)    acc 0.0000 (1.1667)     lr 0.000300
+
+Speed: 10.8224 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 17.1%
+CMC curve
+Rank-1  : 5.6%
+Rank-5  : 27.0%
+Rank-10 : 37.1%
+Rank-20 : 56.2%
+
+
+epoch: [3/30][1/5]      time 31.199 (31.199)    data 12.331 (12.331)    eta 1:12:16     loss 4.3965 (4.3965)    acc 4.3750 (4.3750)     lr 0.000300
+epoch: [3/30][2/5]      time 18.580 (24.890)    data 0.000 (6.166)      eta 0:57:14     loss 4.4359 (4.4162)    acc 3.1250 (3.7500)     lr 0.000300
+epoch: [3/30][3/5]      time 18.470 (22.750)    data 0.000 (4.110)      eta 0:51:56     loss 4.4668 (4.4331)    acc 1.2500 (2.9167)     lr 0.000300
+epoch: [3/30][4/5]      time 18.651 (21.725)    data 0.000 (3.083)      eta 0:49:14     loss 4.3605 (4.4150)    acc 1.4583 (2.5521)     lr 0.000300
+epoch: [3/30][5/5]      time 18.656 (21.111)    data 0.000 (2.466)      eta 0:47:30     loss 4.4332 (4.4186)    acc 0.0000 (2.0417)     lr 0.000300
+
+Speed: 10.8537 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 16.0%
+CMC curve
+Rank-1  : 4.5%
+Rank-5  : 25.8%
+Rank-10 : 39.3%
+Rank-20 : 60.7%
+
+
+epoch: [4/30][1/5]      time 31.017 (31.017)    data 12.367 (12.367)    eta 1:09:16     loss 4.3106 (4.3106)    acc 8.3333 (8.3333)     lr 0.000300
+epoch: [4/30][2/5]      time 18.597 (24.807)    data 0.000 (6.184)      eta 0:54:59     loss 4.3472 (4.3289)    acc 1.4583 (4.8958)     lr 0.000300
+epoch: [4/30][3/5]      time 18.552 (22.722)    data 0.000 (4.122)      eta 0:49:59     loss 4.3573 (4.3384)    acc 1.2500 (3.6806)     lr 0.000300
+epoch: [4/30][4/5]      time 18.517 (21.671)    data 0.000 (3.092)      eta 0:47:18     loss 4.2873 (4.3256)    acc 4.5833 (3.9062)     lr 0.000300
+epoch: [4/30][5/5]      time 18.553 (21.047)    data 0.000 (2.473)      eta 0:45:36     loss 4.3051 (4.3215)    acc 2.7083 (3.6667)     lr 0.000300
+
+Speed: 10.8211 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.6%
+CMC curve
+Rank-1  : 10.1%
+Rank-5  : 28.1%
+Rank-10 : 40.4%
+Rank-20 : 56.2%
+
+
+epoch: [5/30][1/5]      time 31.147 (31.147)    data 12.463 (12.463)    eta 1:06:57     loss 4.2567 (4.2567)    acc 8.1250 (8.1250)     lr 0.000300
+epoch: [5/30][2/5]      time 18.611 (24.879)    data 0.000 (6.232)      eta 0:53:04     loss 4.2497 (4.2532)    acc 7.5000 (7.8125)     lr 0.000300
+epoch: [5/30][3/5]      time 18.532 (22.764)    data 0.000 (4.154)      eta 0:48:10     loss 4.2116 (4.2393)    acc 15.8333 (10.4861)   lr 0.000300
+epoch: [5/30][4/5]      time 18.436 (21.682)    data 0.000 (3.116)      eta 0:45:31     loss 4.2667 (4.2462)    acc 2.2917 (8.4375)     lr 0.000300
+epoch: [5/30][5/5]      time 18.507 (21.047)    data 0.000 (2.493)      eta 0:43:50     loss 4.2178 (4.2405)    acc 0.8333 (6.9167)     lr 0.000300
+
+Speed: 10.8331 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 15.2%
+CMC curve
+Rank-1  : 5.6%
+Rank-5  : 22.5%
+Rank-10 : 41.6%
+Rank-20 : 57.3%
+
+
+epoch: [6/30][1/5]      time 31.514 (31.514)    data 12.711 (12.711)    eta 1:05:07     loss 4.1732 (4.1732)    acc 7.5000 (7.5000)     lr 0.000300
+epoch: [6/30][2/5]      time 18.628 (25.071)    data 0.000 (6.356)      eta 0:51:23     loss 4.1896 (4.1814)    acc 10.0000 (8.7500)    lr 0.000300
+epoch: [6/30][3/5]      time 18.535 (22.892)    data 0.000 (4.237)      eta 0:46:32     loss 4.1531 (4.1719)    acc 2.2917 (6.5972)     lr 0.000300
+epoch: [6/30][4/5]      time 18.473 (21.788)    data 0.000 (3.178)      eta 0:43:56     loss 4.1202 (4.1590)    acc 17.2917 (9.2708)    lr 0.000300
+epoch: [6/30][5/5]      time 18.478 (21.126)    data 0.000 (2.542)      eta 0:42:15     loss 4.2726 (4.1817)    acc 7.2917 (8.8750)     lr 0.000300
+
+Speed: 10.8158 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 15.4%
+CMC curve
+Rank-1  : 6.7%
+Rank-5  : 21.3%
+Rank-10 : 30.3%
+Rank-20 : 48.3%
+
+
+epoch: [7/30][1/5]      time 31.288 (31.288)    data 12.469 (12.469)    eta 1:02:03     loss 4.1348 (4.1348)    acc 12.2917 (12.2917)   lr 0.000300
+epoch: [7/30][2/5]      time 18.517 (24.902)    data 0.000 (6.235)      eta 0:48:58     loss 4.1686 (4.1517)    acc 12.2917 (12.2917)   lr 0.000300
+epoch: [7/30][3/5]      time 18.549 (22.785)    data 0.000 (4.156)      eta 0:44:25     loss 4.1419 (4.1484)    acc 13.5417 (12.7083)   lr 0.000300
+epoch: [7/30][4/5]      time 18.567 (21.730)    data 0.000 (3.117)      eta 0:42:00     loss 4.1341 (4.1448)    acc 11.6667 (12.4479)   lr 0.000300
+epoch: [7/30][5/5]      time 18.547 (21.094)    data 0.000 (2.494)      eta 0:40:25     loss 4.0536 (4.1266)    acc 10.6250 (12.0833)   lr 0.000300
+
+Speed: 10.8465 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 17.7%
+CMC curve
+Rank-1  : 10.1%
+Rank-5  : 20.2%
+Rank-10 : 32.6%
+Rank-20 : 51.7%
+
+
+epoch: [8/30][1/5]      time 31.454 (31.454)    data 12.705 (12.705)    eta 0:59:45     loss 4.1060 (4.1060)    acc 10.0000 (10.0000)   lr 0.000300
+epoch: [8/30][2/5]      time 18.550 (25.002)    data 0.000 (6.352)      eta 0:47:05     loss 3.9718 (4.0389)    acc 11.2500 (10.6250)   lr 0.000300
+epoch: [8/30][3/5]      time 18.584 (22.863)    data 0.000 (4.235)      eta 0:42:40     loss 4.1779 (4.0853)    acc 3.1250 (8.1250)     lr 0.000300
+epoch: [8/30][4/5]      time 18.500 (21.772)    data 0.000 (3.176)      eta 0:40:16     loss 4.0956 (4.0878)    acc 15.0000 (9.8438)    lr 0.000300
+epoch: [8/30][5/5]      time 18.512 (21.120)    data 0.000 (2.541)      eta 0:38:43     loss 4.0827 (4.0868)    acc 15.6250 (11.0000)   lr 0.000300
+
+Speed: 10.8384 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 21.2%
+CMC curve
+Rank-1  : 9.0%
+Rank-5  : 33.7%
+Rank-10 : 43.8%
+Rank-20 : 53.9%
+
+
+epoch: [9/30][1/5]      time 31.112 (31.112)    data 12.398 (12.398)    eta 0:56:31     loss 4.0984 (4.0984)    acc 6.0417 (6.0417)     lr 0.000300
+epoch: [9/30][2/5]      time 18.532 (24.822)    data 0.000 (6.199)      eta 0:44:40     loss 4.0552 (4.0768)    acc 12.5000 (9.2708)    lr 0.000300
+epoch: [9/30][3/5]      time 18.533 (22.726)    data 0.000 (4.133)      eta 0:40:31     loss 3.9990 (4.0509)    acc 27.5000 (15.3472)   lr 0.000300
+epoch: [9/30][4/5]      time 18.523 (21.675)    data 0.000 (3.100)      eta 0:38:17     loss 3.9803 (4.0333)    acc 8.3333 (13.5937)    lr 0.000300
+epoch: [9/30][5/5]      time 18.561 (21.052)    data 0.000 (2.480)      eta 0:36:50     loss 4.0765 (4.0419)    acc 3.9583 (11.6667)    lr 0.000300
+
+
+Speed: 10.8197 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 21.5%
+CMC curve
+Rank-1  : 10.1%
+Rank-5  : 29.2%
+Rank-10 : 44.9%
+Rank-20 : 57.3%
+
+
+epoch: [10/30][1/5]     time 31.181 (31.181)    data 12.506 (12.506)    eta 0:54:02     loss 3.9956 (3.9956)    acc 22.2917 (22.2917)   lr 0.000300
+epoch: [10/30][2/5]     time 18.574 (24.877)    data 0.000 (6.253)      eta 0:42:42     loss 4.0079 (4.0017)    acc 17.7083 (20.0000)   lr 0.000300
+epoch: [10/30][3/5]     time 18.462 (22.739)    data 0.000 (4.169)      eta 0:38:39     loss 3.9636 (3.9890)    acc 10.8333 (16.9444)   lr 0.000300
+epoch: [10/30][4/5]     time 18.496 (21.678)    data 0.000 (3.127)      eta 0:36:29     loss 4.0992 (4.0166)    acc 7.7083 (14.6354)    lr 0.000300
+epoch: [10/30][5/5]     time 18.487 (21.040)    data 0.000 (2.501)      eta 0:35:03     loss 4.0157 (4.0164)    acc 7.2917 (13.1667)    lr 0.000300
+
+Speed: 10.8384 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 23.9%
+CMC curve
+Rank-1  : 13.5%
+Rank-5  : 32.6%
+Rank-10 : 41.6%
+Rank-20 : 59.6%
+
+
+epoch: [11/30][1/5]     time 31.200 (31.200)    data 12.416 (12.416)    eta 0:51:28     loss 3.9280 (3.9280)    acc 16.8750 (16.8750)   lr 0.000300
+epoch: [11/30][2/5]     time 18.522 (24.861)    data 0.000 (6.208)      eta 0:40:36     loss 4.0557 (3.9919)    acc 16.4583 (16.6667)   lr 0.000300
+epoch: [11/30][3/5]     time 18.476 (22.733)    data 0.001 (4.139)      eta 0:36:45     loss 3.9728 (3.9855)    acc 13.9583 (15.7639)   lr 0.000300
+epoch: [11/30][4/5]     time 18.589 (21.697)    data 0.000 (3.104)      eta 0:34:42     loss 3.9100 (3.9666)    acc 24.1667 (17.8646)   lr 0.000300
+epoch: [11/30][5/5]     time 18.630 (21.083)    data 0.000 (2.483)      eta 0:33:22     loss 4.0475 (3.9828)    acc 7.9167 (15.8750)    lr 0.000300
+
+Speed: 10.8390 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 20.7%
+CMC curve
+Rank-1  : 11.2%
+Rank-5  : 28.1%
+Rank-10 : 42.7%
+Rank-20 : 65.2%
+
+
+epoch: [12/30][1/5]     time 31.382 (31.382)    data 12.576 (12.576)    eta 0:49:09     loss 3.9671 (3.9671)    acc 18.5417 (18.5417)   lr 0.000300
+epoch: [12/30][2/5]     time 18.599 (24.990)    data 0.000 (6.288)      eta 0:38:44     loss 3.9575 (3.9623)    acc 17.2917 (17.9167)   lr 0.000300
+epoch: [12/30][3/5]     time 18.535 (22.839)    data 0.000 (4.192)      eta 0:35:01     loss 3.9728 (3.9658)    acc 15.6250 (17.1528)   lr 0.000300
+epoch: [12/30][4/5]     time 18.455 (21.743)    data 0.000 (3.144)      eta 0:32:58     loss 3.9497 (3.9618)    acc 21.0417 (18.1250)   lr 0.000300
+epoch: [12/30][5/5]     time 18.526 (21.099)    data 0.000 (2.515)      eta 0:31:38     loss 3.9696 (3.9633)    acc 14.3750 (17.3750)   lr 0.000300
+
+Speed: 10.8392 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 22.2%
+CMC curve
+Rank-1  : 11.2%
+Rank-5  : 32.6%
+Rank-10 : 43.8%
+Rank-20 : 65.2%
+
+
+epoch: [13/30][1/5]     time 31.147 (31.147)    data 12.336 (12.336)    eta 0:46:12     loss 3.9858 (3.9858)    acc 12.2917 (12.2917)   lr 0.000300
+epoch: [13/30][2/5]     time 18.548 (24.848)    data 0.000 (6.168)      eta 0:36:26     loss 3.9807 (3.9832)    acc 12.0833 (12.1875)   lr 0.000300
+epoch: [13/30][3/5]     time 18.509 (22.735)    data 0.000 (4.112)      eta 0:32:57     loss 3.8733 (3.9466)    acc 27.2917 (17.2222)   lr 0.000300
+epoch: [13/30][4/5]     time 18.453 (21.664)    data 0.000 (3.084)      eta 0:31:03     loss 3.9684 (3.9520)    acc 17.5000 (17.2917)   lr 0.000300
+epoch: [13/30][5/5]     time 18.516 (21.035)    data 0.000 (2.467)      eta 0:29:47     loss 3.9112 (3.9439)    acc 19.3750 (17.7083)   lr 0.000300
+
+Speed: 10.8092 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 16.6%
+CMC curve
+Rank-1  : 7.9%
+Rank-5  : 22.5%
+Rank-10 : 32.6%
+Rank-20 : 42.7%
+
+
+epoch: [14/30][1/5]     time 31.487 (31.487)    data 12.605 (12.605)    eta 0:44:04     loss 3.9362 (3.9362)    acc 8.9583 (8.9583)     lr 0.000300
+epoch: [14/30][2/5]     time 18.479 (24.983)    data 0.000 (6.302)      eta 0:34:33     loss 3.9316 (3.9339)    acc 21.4583 (15.2083)   lr 0.000300
+epoch: [14/30][3/5]     time 18.480 (22.816)    data 0.000 (4.202)      eta 0:31:10     loss 3.8816 (3.9165)    acc 28.1250 (19.5139)   lr 0.000300
+epoch: [14/30][4/5]     time 18.538 (21.746)    data 0.000 (3.151)      eta 0:29:21     loss 3.9266 (3.9190)    acc 17.7083 (19.0625)   lr 0.000300
+epoch: [14/30][5/5]     time 18.451 (21.087)    data 0.000 (2.521)      eta 0:28:06     loss 3.9697 (3.9291)    acc 6.0417 (16.4583)    lr 0.000300
+
+Speed: 10.8484 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.4%
+CMC curve
+Rank-1  : 9.0%
+Rank-5  : 29.2%
+Rank-10 : 42.7%
+Rank-20 : 60.7%
+
+
+epoch: [15/30][1/5]     time 31.411 (31.411)    data 12.596 (12.596)    eta 0:41:21     loss 3.8847 (3.8847)    acc 18.7500 (18.7500)   lr 0.000300
+epoch: [15/30][2/5]     time 18.489 (24.950)    data 0.000 (6.298)      eta 0:32:26     loss 3.8852 (3.8849)    acc 20.0000 (19.3750)   lr 0.000300
+epoch: [15/30][3/5]     time 18.549 (22.816)    data 0.000 (4.199)      eta 0:29:16     loss 3.9380 (3.9026)    acc 16.2500 (18.3333)   lr 0.000300
+epoch: [15/30][4/5]     time 18.561 (21.753)    data 0.016 (3.153)      eta 0:27:33     loss 3.9032 (3.9028)    acc 22.0833 (19.2708)   lr 0.000300
+epoch: [15/30][5/5]     time 18.489 (21.100)    data 0.000 (2.522)      eta 0:26:22     loss 3.9129 (3.9048)    acc 20.4167 (19.5000)   lr 0.000300
+
+Speed: 10.8164 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 18.4%
+CMC curve
+Rank-1  : 6.7%
+Rank-5  : 23.6%
+Rank-10 : 36.0%
+Rank-20 : 60.7%
+
+
+epoch: [16/30][1/5]     time 31.399 (31.399)    data 12.530 (12.530)    eta 0:38:43     loss 3.8832 (3.8832)    acc 18.3333 (18.3333)   lr 0.000300
+epoch: [16/30][2/5]     time 18.543 (24.971)    data 0.000 (6.265)      eta 0:30:22     loss 3.9278 (3.9055)    acc 18.1250 (18.2292)   lr 0.000300
+epoch: [16/30][3/5]     time 18.594 (22.845)    data 0.000 (4.177)      eta 0:27:24     loss 3.8939 (3.9017)    acc 20.6250 (19.0278)   lr 0.000300
+epoch: [16/30][4/5]     time 18.578 (21.779)    data 0.000 (3.132)      eta 0:25:46     loss 3.8825 (3.8969)    acc 18.9583 (19.0104)   lr 0.000300
+epoch: [16/30][5/5]     time 18.602 (21.143)    data 0.000 (2.506)      eta 0:24:40     loss 3.8674 (3.8910)    acc 12.7083 (17.7500)   lr 0.000300
+
+Speed: 10.8253 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 23.1%
+CMC curve
+Rank-1  : 11.2%
+Rank-5  : 33.7%
+Rank-10 : 44.9%
+Rank-20 : 61.8%
+
+
+epoch: [17/30][1/5]     time 31.211 (31.211)    data 12.428 (12.428)    eta 0:35:53     loss 3.8766 (3.8766)    acc 21.4583 (21.4583)   lr 0.000300
+epoch: [17/30][2/5]     time 18.510 (24.861)    data 0.000 (6.214)      eta 0:28:10     loss 3.9426 (3.9096)    acc 8.7500 (15.1042)    lr 0.000300
+epoch: [17/30][3/5]     time 18.530 (22.751)    data 0.000 (4.143)      eta 0:25:24     loss 3.7744 (3.8645)    acc 27.7083 (19.3056)   lr 0.000300
+epoch: [17/30][4/5]     time 18.469 (21.680)    data 0.001 (3.107)      eta 0:23:50     loss 3.9348 (3.8821)    acc 18.7500 (19.1667)   lr 0.000300
+epoch: [17/30][5/5]     time 18.549 (21.054)    data 0.000 (2.486)      eta 0:22:48     loss 3.9174 (3.8892)    acc 18.9583 (19.1250)   lr 0.000300
+
+Speed: 10.9173 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 23.2%
+CMC curve
+Rank-1  : 15.7%
+Rank-5  : 27.0%
+Rank-10 : 39.3%
+Rank-20 : 58.4%
+
+
+epoch: [18/30][1/5]     time 31.900 (31.900)    data 12.959 (12.959)    eta 0:34:01     loss 3.8921 (3.8921)    acc 21.2500 (21.2500)   lr 0.000300
+epoch: [18/30][2/5]     time 18.667 (25.284)    data 0.000 (6.480)      eta 0:26:32     loss 3.9384 (3.9153)    acc 17.9167 (19.5833)   lr 0.000300
+epoch: [18/30][3/5]     time 18.578 (23.049)    data 0.001 (4.320)      eta 0:23:49     loss 3.8322 (3.8876)    acc 25.4167 (21.5278)   lr 0.000300
+epoch: [18/30][4/5]     time 18.559 (21.926)    data 0.000 (3.240)      eta 0:22:17     loss 3.8975 (3.8901)    acc 12.5000 (19.2708)   lr 0.000300
+epoch: [18/30][5/5]     time 18.513 (21.244)    data 0.001 (2.592)      eta 0:21:14     loss 3.8614 (3.8843)    acc 16.0417 (18.6250)   lr 0.000300
+
+Speed: 10.8739 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 21.7%
+CMC curve
+Rank-1  : 11.2%
+Rank-5  : 31.5%
+Rank-10 : 41.6%
+Rank-20 : 66.3%
+
+
+epoch: [19/30][1/5]     time 31.761 (31.761)    data 13.041 (13.041)    eta 0:31:13     loss 3.8594 (3.8594)    acc 15.0000 (15.0000)   lr 0.000300
+epoch: [19/30][2/5]     time 18.599 (25.180)    data 0.000 (6.521)      eta 0:24:20     loss 3.8651 (3.8623)    acc 28.7500 (21.8750)   lr 0.000300
+epoch: [19/30][3/5]     time 18.598 (22.986)    data 0.001 (4.347)      eta 0:21:50     loss 3.8725 (3.8657)    acc 23.9583 (22.5694)   lr 0.000300
+epoch: [19/30][4/5]     time 18.521 (21.870)    data 0.000 (3.261)      eta 0:20:24     loss 3.8397 (3.8592)    acc 28.1250 (23.9583)   lr 0.000300
+epoch: [19/30][5/5]     time 18.566 (21.209)    data 0.001 (2.609)      eta 0:19:26     loss 3.9153 (3.8704)    acc 12.9167 (21.7500)   lr 0.000300
+
+Speed: 10.8528 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 23.9%
+CMC curve
+Rank-1  : 11.2%
+Rank-5  : 33.7%
+Rank-10 : 47.2%
+Rank-20 : 58.4%
+
+
+epoch: [20/30][1/5]     time 31.643 (31.643)    data 12.908 (12.908)    eta 0:28:28     loss 3.8210 (3.8210)    acc 12.9167 (12.9167)   lr 0.000300
+epoch: [20/30][2/5]     time 18.506 (25.074)    data 0.000 (6.454)      eta 0:22:08     loss 3.9017 (3.8614)    acc 11.4583 (12.1875)   lr 0.000300
+epoch: [20/30][3/5]     time 18.580 (22.910)    data 0.001 (4.303)      eta 0:19:51     loss 3.8480 (3.8569)    acc 24.3750 (16.2500)   lr 0.000300
+epoch: [20/30][4/5]     time 18.585 (21.829)    data 0.001 (3.228)      eta 0:18:33     loss 3.8964 (3.8668)    acc 21.8750 (17.6562)   lr 0.000300
+epoch: [20/30][5/5]     time 18.585 (21.180)    data 0.001 (2.582)      eta 0:17:39     loss 3.8542 (3.8642)    acc 28.3333 (19.7917)   lr 0.000300
+
+Speed: 10.8802 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 21.5%
+CMC curve
+Rank-1  : 11.2%
+Rank-5  : 30.3%
+Rank-10 : 39.3%
+Rank-20 : 58.4%
+
+
+epoch: [21/30][1/5]     time 32.062 (32.062)    data 13.124 (13.124)    eta 0:26:11     loss 3.8711 (3.8711)    acc 18.3333 (18.3333)   lr 0.000030
+epoch: [21/30][2/5]     time 18.554 (25.308)    data 0.000 (6.562)      eta 0:20:14     loss 3.8736 (3.8724)    acc 18.7500 (18.5417)   lr 0.000030
+epoch: [21/30][3/5]     time 18.483 (23.033)    data 0.000 (4.375)      eta 0:18:02     loss 3.8392 (3.8613)    acc 15.8333 (17.6389)   lr 0.000030
+epoch: [21/30][4/5]     time 18.573 (21.918)    data 0.000 (3.281)      eta 0:16:48     loss 3.8390 (3.8557)    acc 28.1250 (20.2604)   lr 0.000030
+epoch: [21/30][5/5]     time 18.591 (21.253)    data 0.001 (2.625)      eta 0:15:56     loss 3.8270 (3.8500)    acc 28.7500 (21.9583)   lr 0.000030
+
+Speed: 10.8221 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.5%
+CMC curve
+Rank-1  : 6.7%
+Rank-5  : 32.6%
+Rank-10 : 46.1%
+Rank-20 : 59.6%
+
+
+epoch: [22/30][1/5]     time 31.571 (31.571)    data 12.778 (12.778)    eta 0:23:09     loss 3.7481 (3.7481)    acc 34.7917 (34.7917)   lr 0.000030
+epoch: [22/30][2/5]     time 18.591 (25.081)    data 0.001 (6.390)      eta 0:17:58     loss 3.9452 (3.8467)    acc 15.4167 (25.1042)   lr 0.000030
+epoch: [22/30][3/5]     time 18.647 (22.936)    data 0.001 (4.260)      eta 0:16:03     loss 3.9300 (3.8744)    acc 10.4167 (20.2083)   lr 0.000030
+epoch: [22/30][4/5]     time 18.556 (21.841)    data 0.002 (3.196)      eta 0:14:55     loss 3.8306 (3.8635)    acc 25.4167 (21.5104)   lr 0.000030
+epoch: [22/30][5/5]     time 18.565 (21.186)    data 0.000 (2.556)      eta 0:14:07     loss 3.8682 (3.8644)    acc 22.5000 (21.7083)   lr 0.000030
+
+Speed: 10.8432 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 20.0%
+CMC curve
+Rank-1  : 7.9%
+Rank-5  : 30.3%
+Rank-10 : 47.2%
+Rank-20 : 58.4%
+
+
+epoch: [23/30][1/5]     time 32.089 (32.089)    data 13.129 (13.129)    eta 0:20:51     loss 3.8662 (3.8662)    acc 17.9167 (17.9167)   lr 0.000030
+epoch: [23/30][2/5]     time 18.617 (25.353)    data 0.002 (6.565)      eta 0:16:03     loss 3.8993 (3.8827)    acc 17.2917 (17.6042)   lr 0.000030
+epoch: [23/30][3/5]     time 18.675 (23.127)    data 0.000 (4.377)      eta 0:14:15     loss 3.8090 (3.8582)    acc 29.5833 (21.5972)   lr 0.000030
+epoch: [23/30][4/5]     time 18.499 (21.970)    data 0.001 (3.283)      eta 0:13:10     loss 3.8034 (3.8445)    acc 28.1250 (23.2292)   lr 0.000030
+epoch: [23/30][5/5]     time 18.594 (21.295)    data 0.001 (2.627)      eta 0:12:25     loss 3.8635 (3.8483)    acc 18.7500 (22.3333)   lr 0.000030
+
+Speed: 10.8647 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.6%
+CMC curve
+Rank-1  : 7.9%
+Rank-5  : 27.0%
+Rank-10 : 44.9%
+Rank-20 : 64.0%
+
+
+epoch: [24/30][1/5]     time 31.974 (31.974)    data 13.032 (13.032)    eta 0:18:07     loss 3.8131 (3.8131)    acc 21.4583 (21.4583)   lr 0.000030
+epoch: [24/30][2/5]     time 18.558 (25.266)    data 0.000 (6.516)      eta 0:13:53     loss 3.8909 (3.8520)    acc 18.7500 (20.1042)   lr 0.000030
+epoch: [24/30][3/5]     time 18.640 (23.057)    data 0.001 (4.344)      eta 0:12:17     loss 3.8963 (3.8667)    acc 14.7917 (18.3333)   lr 0.000030
+epoch: [24/30][4/5]     time 18.579 (21.938)    data 0.000 (3.258)      eta 0:11:20     loss 3.8552 (3.8639)    acc 16.6667 (17.9167)   lr 0.000030
+epoch: [24/30][5/5]     time 18.606 (21.271)    data 0.002 (2.607)      eta 0:10:38     loss 3.7137 (3.8338)    acc 37.0833 (21.7500)   lr 0.000030
+
+Speed: 10.8972 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 20.3%
+CMC curve
+Rank-1  : 9.0%
+Rank-5  : 30.3%
+Rank-10 : 44.9%
+Rank-20 : 59.6%
+
+
+epoch: [25/30][1/5]     time 32.199 (32.199)    data 13.341 (13.341)    eta 0:15:33     loss 3.7843 (3.7843)    acc 28.5417 (28.5417)   lr 0.000030
+epoch: [25/30][2/5]     time 18.603 (25.401)    data 0.000 (6.671)      eta 0:11:51     loss 3.8713 (3.8278)    acc 13.7500 (21.1458)   lr 0.000030
+epoch: [25/30][3/5]     time 18.655 (23.152)    data 0.001 (4.447)      eta 0:10:25     loss 3.8031 (3.8196)    acc 33.5417 (25.2778)   lr 0.000030
+epoch: [25/30][4/5]     time 18.633 (22.023)    data 0.001 (3.336)      eta 0:09:32     loss 3.8464 (3.8263)    acc 18.7500 (23.6458)   lr 0.000030
+epoch: [25/30][5/5]     time 18.638 (21.346)    data 0.002 (2.669)      eta 0:08:53     loss 3.8748 (3.8360)    acc 19.1667 (22.7500)   lr 0.000030
+
+Speed: 10.8371 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 20.4%
+CMC curve
+Rank-1  : 9.0%
+Rank-5  : 30.3%
+Rank-10 : 41.6%
+Rank-20 : 61.8%
+
+
+epoch: [26/30][1/5]     time 31.357 (31.357)    data 12.646 (12.646)    eta 0:12:32     loss 3.8349 (3.8349)    acc 18.7500 (18.7500)   lr 0.000030
+epoch: [26/30][2/5]     time 18.604 (24.981)    data 0.000 (6.323)      eta 0:09:34     loss 3.8316 (3.8333)    acc 22.0833 (20.4167)   lr 0.000030
+epoch: [26/30][3/5]     time 18.544 (22.835)    data 0.000 (4.215)      eta 0:08:22     loss 3.8618 (3.8428)    acc 18.7500 (19.8611)   lr 0.000030
+epoch: [26/30][4/5]     time 18.509 (21.754)    data 0.000 (3.161)      eta 0:07:36     loss 3.8186 (3.8367)    acc 30.6250 (22.5521)   lr 0.000030
+epoch: [26/30][5/5]     time 18.498 (21.103)    data 0.000 (2.529)      eta 0:07:02     loss 3.7912 (3.8276)    acc 24.5833 (22.9583)   lr 0.000030
+
+Speed: 10.8434 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 20.2%
+CMC curve
+Rank-1  : 7.9%
+Rank-5  : 31.5%
+Rank-10 : 42.7%
+Rank-20 : 61.8%
+
+
+epoch: [27/30][1/5]     time 31.386 (31.386)    data 12.663 (12.663)    eta 0:09:56     loss 3.7614 (3.7614)    acc 22.9167 (22.9167)   lr 0.000030
+epoch: [27/30][2/5]     time 18.550 (24.968)    data 0.000 (6.332)      eta 0:07:29     loss 3.8608 (3.8111)    acc 18.7500 (20.8333)   lr 0.000030
+epoch: [27/30][3/5]     time 18.514 (22.817)    data 0.000 (4.221)      eta 0:06:27     loss 3.8535 (3.8252)    acc 25.0000 (22.2222)   lr 0.000030
+epoch: [27/30][4/5]     time 18.610 (21.765)    data 0.000 (3.166)      eta 0:05:48     loss 3.8553 (3.8327)    acc 13.1250 (19.9479)   lr 0.000030
+epoch: [27/30][5/5]     time 18.540 (21.120)    data 0.000 (2.533)      eta 0:05:16     loss 3.8601 (3.8382)    acc 23.7500 (20.7083)   lr 0.000030
+
+Speed: 10.8323 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.4%
+CMC curve
+Rank-1  : 6.7%
+Rank-5  : 31.5%
+Rank-10 : 43.8%
+Rank-20 : 65.2%
+
+
+epoch: [28/30][1/5]     time 31.221 (31.221)    data 12.548 (12.548)    eta 0:07:17     loss 3.8539 (3.8539)    acc 21.8750 (21.8750)   lr 0.000030
+epoch: [28/30][2/5]     time 18.550 (24.885)    data 0.000 (6.274)      eta 0:05:23     loss 3.8371 (3.8455)    acc 22.0833 (21.9792)   lr 0.000030
+epoch: [28/30][3/5]     time 18.548 (22.773)    data 0.000 (4.183)      eta 0:04:33     loss 3.9054 (3.8654)    acc 16.6667 (20.2083)   lr 0.000030
+epoch: [28/30][4/5]     time 18.618 (21.734)    data 0.000 (3.137)      eta 0:03:59     loss 3.8276 (3.8560)    acc 25.2083 (21.4583)   lr 0.000030
+epoch: [28/30][5/5]     time 18.550 (21.097)    data 0.000 (2.510)      eta 0:03:30     loss 3.7884 (3.8425)    acc 20.2083 (21.2083)   lr 0.000030
+
+Speed: 10.8362 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 18.3%
+CMC curve
+Rank-1  : 6.7%
+Rank-5  : 29.2%
+Rank-10 : 42.7%
+Rank-20 : 62.9%
+
+
+epoch: [29/30][1/5]     time 31.230 (31.230)    data 12.482 (12.482)    eta 0:04:41     loss 3.8905 (3.8905)    acc 15.6250 (15.6250)   lr 0.000030
+epoch: [29/30][2/5]     time 18.551 (24.890)    data 0.000 (6.241)      eta 0:03:19     loss 3.7254 (3.8079)    acc 36.6667 (26.1458)   lr 0.000030
+epoch: [29/30][3/5]     time 18.518 (22.766)    data 0.000 (4.161)      eta 0:02:39     loss 3.8287 (3.8149)    acc 26.0417 (26.1111)   lr 0.000030
+epoch: [29/30][4/5]     time 18.533 (21.708)    data 0.000 (3.120)      eta 0:02:10     loss 3.8010 (3.8114)    acc 24.5833 (25.7292)   lr 0.000030
+epoch: [29/30][5/5]     time 18.529 (21.072)    data 0.000 (2.496)      eta 0:01:45     loss 3.8710 (3.8233)    acc 12.5000 (23.0833)   lr 0.000030
+
+Speed: 10.8226 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.5%
+CMC curve
+Rank-1  : 7.9%
+Rank-5  : 30.3%
+Rank-10 : 39.3%
+Rank-20 : 64.0%
+
+
+epoch: [30/30][1/5]     time 31.483 (31.483)    data 12.549 (12.549)    eta 0:02:05     loss 3.7921 (3.7921)    acc 28.1250 (28.1250)   lr 0.000030
+epoch: [30/30][2/5]     time 18.550 (25.016)    data 0.000 (6.275)      eta 0:01:15     loss 3.8747 (3.8334)    acc 16.2500 (22.1875)   lr 0.000030
+epoch: [30/30][3/5]     time 18.507 (22.846)    data 0.000 (4.183)      eta 0:00:45     loss 3.8519 (3.8396)    acc 14.7917 (19.7222)   lr 0.000030
+epoch: [30/30][4/5]     time 18.525 (21.766)    data 0.000 (3.137)      eta 0:00:21     loss 3.8264 (3.8363)    acc 31.6667 (22.7083)   lr 0.000030
+epoch: [30/30][5/5]     time 18.501 (21.113)    data 0.000 (2.510)      eta 0:00:00     loss 3.8340 (3.8358)    acc 21.4583 (22.4583)   lr 0.000030
+
+Speed: 10.8296 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 19.3%
+CMC curve
+Rank-1  : 7.9%
+Rank-5  : 29.2%
+Rank-10 : 39.3%
+Rank-20 : 62.9%
+
+
+Testing:
+Speed: 0.5329 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 12.2%
+CMC curve
+Rank-1  : 4.5%
+Rank-5  : 16.9%
+Rank-10 : 24.7%
+Rank-20 : 44.9%
