@@ -1,8 +1,5 @@
 import torch
 import torchreid
-import torchreid.reid
-import torchreid.reid.data.datasets
-import torchreid.reid.data.datasets.video
 from torchvision import transforms
 import pennylane as qml
 
@@ -128,8 +125,8 @@ if __name__ == '__main__':
     # Train the model
     engine.run(
         max_epoch=30,  
-        save_dir='log/hybrid_resnet50_nlayers4',  
+        save_dir='log/hybrid_resnet50_dynamic_layers16',  
         print_freq=1,  
-        test_only=False,
+        test_only=True,
         eval_freq=1
     )

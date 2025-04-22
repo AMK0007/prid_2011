@@ -8,7 +8,7 @@ import pennylane as qml
 
 # ==== PARAMETERS ====
 n_qubits = 6
-n_layers =8
+n_layers =16
 
 # Define the quantum device
 dev = qml.device("default.qubit", wires=n_qubits)
@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     engine.run(
         max_epoch=30,
-        save_dir='log/hybrid_resnet50_dynamic_layers8',
+        save_dir='log/hybrid_resnet50_dynamic_layers16',
         print_freq=1,
         test_only=True,
         eval_freq=1
