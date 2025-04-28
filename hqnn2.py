@@ -4,8 +4,8 @@ from torchvision import transforms
 import pennylane as qml
 
 # Define the quantum circuit using PennyLane
-n_qubits = 6
-n_layers = 32
+n_qubits = 7
+n_layers = 16
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
@@ -26,52 +26,52 @@ class HybridReIDModel(torch.nn.Module):
             name='resnet50', 
             num_classes=num_classes,  
             loss='softmax',  
-            pretrained=True,
+            pretrained=True,  # Using pre-trained weights
         ).cuda()
 
-        #self.backbonefc = torch.nn.Linear(2048, 256)  # Reduce feature size
+        # Freeze all layers except the final few (fine-tune deeper layers)
+        for param in self.backbone.parameters():
+            param.requires_grad = False  # Freeze all layers initially
+        
+        # Unfreeze the last few layers (for example, the last block of ResNet50)
+        for param in self.backbone.layer4.parameters():
+            param.requires_grad = True  # Unfreeze the deeper layers
 
-        # Quantum layers dynamically stored in ModuleList
+        # Quantum layers
         self.qlayers = torch.nn.ModuleList([
             qml.qnn.TorchLayer(qnode, weight_shapes) for _ in range(n_layers)
         ])
 
         # Fully connected layer for final classification
-        self.fc = torch.nn.Linear(n_layers * n_qubits, num_classes)  # Output adjusted for n_layers
+        self.fc = torch.nn.Linear(n_layers * n_qubits, num_classes)
 
     def forward(self, x):
         # Extract features
-        features = self.backbone(x)
-        #features = self.backbonefc(features)
-
-        # Split feature vector dynamically into `n_layers` parts
-        part_size = features.size(1) // n_layers  # Divide features into equal parts
+        features = self.backbone(x)  # Now, this will fine-tune based on the "requires_grad"
+        
+        # Quantum layers and fully connected output
         quantum_outputs = []
-
+        part_size = features.size(1) // n_layers
         for i in range(n_layers):
             start_idx = i * part_size
-            end_idx = (i + 1) * part_size if i < n_layers - 1 else None  # Ensure last partition includes remaining features
-            x_part = features[:, start_idx:end_idx]  # Extract segment
-            quantum_outputs.append(self.qlayers[i](x_part))  # Apply corresponding quantum layer
+            end_idx = (i + 1) * part_size if i < n_layers - 1 else None
+            x_part = features[:, start_idx:end_idx]
+            quantum_outputs.append(self.qlayers[i](x_part))
 
-        # Concatenate quantum outputs
         x = torch.cat(quantum_outputs, dim=1)
-
-        # Fully connected output
         x = self.fc(x)
         return x
 
 # Wrap execution code in main guard
 if __name__ == '__main__':
     # Define transformations
-    transform_pipeline = transforms.Compose([
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomResizedCrop(256, scale=(0.8, 1.0)),
-        transforms.Resize((256, 128)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
-
+    transform_pipeline = [
+        'random_flip',       # Random horizontal flip
+        'random_rotate',     # Random rotation
+        'random_crop',       # Random resized crop
+        'color_jitter',      # Color jitter
+        'normalize'          # Normalize (mean, std)
+    ]
     # Create data manager for PRID2011
     datamanager = torchreid.data.VideoDataManager(
         root='',  
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         batch_size_test=64,  
         seq_len=15,  
         sample_method='evenly',  
-        transforms=['random_flip', 'random_crop', 'resize', 'normalize']  
+        transforms=transform_pipeline  
     )
 
     # Access train and test loaders
@@ -100,17 +100,15 @@ if __name__ == '__main__':
     model = HybridReIDModel(num_classes).cuda()
 
     # Build optimizer and scheduler
-    optimizer = torchreid.optim.build_optimizer(
-        model,
-        optim='adam', 
-        lr=0.0003  
+# Build optimizer and scheduler
+    optimizer = torch.optim.Adam(
+        model.parameters(),
+        lr=0.0001,  # Smaller learning rate for fine-tuning
+        weight_decay=5e-4  # L2 regularization to prevent overfitting
     )
 
-    scheduler = torchreid.optim.build_lr_scheduler(
-        optimizer,
-        lr_scheduler='single_step',  
-        stepsize=20  
-    )
+    # Scheduler for adjusting the learning rate
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=20)  # Gradual learning rate reduction
 
     # Create training engine
     engine = torchreid.engine.VideoSoftmaxEngine(
@@ -119,14 +117,13 @@ if __name__ == '__main__':
         optimizer,
         scheduler=scheduler,
         pooling_method='avg',
-        use_gpu=True,
+        use_gpu=True
     )
-
-    # Train the model
     engine.run(
-        max_epoch=30,  
-        save_dir='log/hybrid_resnet50_dynamic_layers16',  
-        print_freq=1,  
-        test_only=True,
+        max_epoch=30,
+        save_dir='log/hybrid_resnet50_dynamic_layers7-16(2)',
+        print_freq=1,
+        test_only=False,
         eval_freq=1
     )
+
