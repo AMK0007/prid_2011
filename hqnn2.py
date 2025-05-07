@@ -4,8 +4,8 @@ from torchvision import transforms
 import pennylane as qml
 
 # Define the quantum circuit using PennyLane
-n_qubits = 7
-n_layers = 16
+n_qubits = 5
+n_layers = 64
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
