@@ -4,8 +4,8 @@ from torchvision import transforms
 import pennylane as qml
 
 # Define the quantum circuit using PennyLane
-n_qubits = 7
-n_layers = 16
+n_qubits = 5
+n_layers = 64
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)
@@ -126,6 +126,6 @@ if __name__ == '__main__':
         save_dir='log/hybrid_resnet50_dynamic_layers7-16(3)',
         print_freq=1,
         test_only=False,
-        eval_freq=1
+        eval_freq=5
     )
 
