@@ -78,11 +78,13 @@ if __name__ == '__main__':
         sources='prid2011',  
         height=256,  
         width=128,  
-        batch_size_train=32,  
+        batch_size_train=8,  
         batch_size_test=64,  
-        seq_len=15,  
-        sample_method='evenly',  
-        transforms=transform_pipeline  
+        seq_len=6,  
+        sample_method='random',  
+        transforms=transform_pipeline ,
+        num_instances=4,
+        workers=8
     )
 
     # Access train and test loaders
@@ -121,7 +123,7 @@ if __name__ == '__main__':
     )
     engine.run(
         max_epoch=30,
-        save_dir='log/hybrid_resnet50_dynamic_layers7-16(2)',
+        save_dir='log/hybrid_resnet50_dynamic_layers7-16(3)',
         print_freq=1,
         test_only=False,
         eval_freq=1
