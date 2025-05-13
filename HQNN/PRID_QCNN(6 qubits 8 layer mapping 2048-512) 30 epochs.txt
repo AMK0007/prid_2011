@@ -477,15 +477,3 @@ Rank-1  : 36.0%
 Rank-5  : 58.4%
 Rank-10 : 65.2%
 Rank-20 : 78.7%
-
-Testing:
-Speed: 0.8238 sec/batch
-Computing distance matrix with metric=euclidean ...
-Computing CMC and mAP ...
-** Results **
-mAP: 24.6%
-CMC curve
-Rank-1  : 14.6%
-Rank-5  : 36.0%
-Rank-10 : 47.2%
-Rank-20 : 59.6%
