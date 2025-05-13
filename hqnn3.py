@@ -3,8 +3,8 @@ import torchreid
 import pennylane as qml
 
 # Quantum setup
-n_qubits = 6
-n_layers = 32
+n_qubits = 7
+n_layers = 16
 dev = qml.device("default.qubit", wires=n_qubits)
 
 @qml.qnode(dev)

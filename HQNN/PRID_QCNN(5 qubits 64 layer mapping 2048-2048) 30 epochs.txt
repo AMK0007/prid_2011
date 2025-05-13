@@ -614,3 +614,15 @@ Rank-5  : 89.9%
 Rank-10 : 95.5%
 Rank-20 : 100.0%
 
+
+EPOCH 30:
+Speed: 9.6567 sec/batch
+Computing distance matrix with metric=euclidean ...
+Computing CMC and mAP ...
+** Results **
+mAP: 77.9%
+CMC curve
+Rank-1  : 70.3%
+Rank-5  : 91.3%
+Rank-10 : 96.0%
+Rank-20 : 100.0%

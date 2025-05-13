@@ -8,7 +8,7 @@ import pennylane as qml
 
 # ==== PARAMETERS ====
 n_qubits = 6
-n_layers =16
+n_layers =2
 
 # Define the quantum device
 dev = qml.device("default.qubit", wires=n_qubits)
